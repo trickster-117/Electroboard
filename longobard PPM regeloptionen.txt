@@ -1,0 +1,11 @@
+Current control - controls the current to the motor and consequently the torque, it gives torque control (acceleration) but does not limit or try to control the speed.
+
+Duty cycle control - controls the duty cycle (voltage) to the motor and consequently the speed, it gives rough speed control (velocity) but does not control the current (the maximum set motor current will be used to accelerate or decelerate the motor to the commanded duty cycle). Will not increase the duty cycle to maintain the same speed when under heavy load. 
+
+PID speed control - controls the ERPM (velocity) of the motor, tries to always make the motor turn at the commanded speed irrespective of the load. Duty cycle and current will change to maintain set ERPM. Requires tuning for best performance.
+
+ 
+
+For your use case of efoil, current control will change your acceleration, duty cycle will control your speed (but acceleration can be very harsh), PID will act similar to duty cycle.
+
+So I would either use current control, or duty cycle with the positive ramping time in the PPM page set to something reasonably high to limit the acceleration, (at least while you get used to it)
